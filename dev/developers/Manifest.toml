@@ -20,6 +20,11 @@ git-tree-sha1 = "3ddd48d200eb8ddf9cb3e0189fc059fd49b97c1f"
 uuid = "00ebfdb7-1f24-5e51-bd34-a7502290713f"
 version = "3.3.6"
 
+[[deps.Combinatorics]]
+git-tree-sha1 = "08c8b6831dc00bfea825826be0bc8336fc369860"
+uuid = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
+version = "1.0.2"
+
 [[deps.CommonMark]]
 deps = ["Crayons", "JSON", "URIs"]
 git-tree-sha1 = "86cce6fd164c26bad346cc51ca736e692c9f553c"
@@ -120,7 +125,8 @@ uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 version = "2.28.0+0"
 
 [[deps.MillerIndices]]
-git-tree-sha1 = "5282bb0cd1940bba365c3c0a5f58c040999a46b7"
+deps = ["Combinatorics", "StaticArrays"]
+git-tree-sha1 = "4dcf48de03e28d5f63cfb9eb3b441f48d908c0a4"
 repo-rev = "main"
 repo-url = "https://github.com/MineralsCloud/MillerIndices.jl"
 uuid = "f41335bc-9121-4844-b5af-1d5721981e9a"
@@ -191,6 +197,25 @@ version = "1.0.3"
 
 [[deps.Sockets]]
 uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
+
+[[deps.SparseArrays]]
+deps = ["LinearAlgebra", "Random"]
+uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
+[[deps.StaticArrays]]
+deps = ["LinearAlgebra", "Random", "StaticArraysCore", "Statistics"]
+git-tree-sha1 = "6954a456979f23d05085727adb17c4551c19ecd1"
+uuid = "90137ffa-7385-5640-81b9-e52037218182"
+version = "1.5.12"
+
+[[deps.StaticArraysCore]]
+git-tree-sha1 = "6b7ba252635a5eff6a0b0664a41ee140a1c9e72a"
+uuid = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
+version = "1.4.0"
+
+[[deps.Statistics]]
+deps = ["LinearAlgebra", "SparseArrays"]
+uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [[deps.TOML]]
 deps = ["Dates"]
