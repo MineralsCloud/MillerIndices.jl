@@ -66,6 +66,7 @@ Depth = 3
 
 ```@contents
 Pages = ["public.md"]
+Depth = 3
 ```
 
 ### [Index](@id main-index)
