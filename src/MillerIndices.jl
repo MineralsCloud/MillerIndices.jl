@@ -7,7 +7,7 @@ export Miller, MillerBravais, ReciprocalMiller, ReciprocalMillerBravais
 export family, @m_str
 
 "Represent the Miller indices or Miller–Bravais indices."
-abstract type Indices <: AbstractVector{Int} end
+abstract type Indices <: AbstractVector{Int64} end
 abstract type AbstractMiller <: Indices end
 """
     Miller(i, j, k)
@@ -15,7 +15,7 @@ abstract type AbstractMiller <: Indices end
 Represent the Miller indices in the real space (crystal directions).
 """
 struct Miller <: AbstractMiller
-    data::SVector{3,Int}
+    data::SVector{3,Int64}
     Miller(v) = new(iszero(v) ? v : v .÷ gcd(v))
 end
 Miller(i, j, k) = Miller([i, j, k])
@@ -25,7 +25,7 @@ Miller(i, j, k) = Miller([i, j, k])
 Represent the Miller indices in the reciprocal space (planes).
 """
 struct ReciprocalMiller <: AbstractMiller
-    data::SVector{3,Int}
+    data::SVector{3,Int64}
     ReciprocalMiller(v) = new(iszero(v) ? v : v .÷ gcd(v))
 end
 ReciprocalMiller(i, j, k) = ReciprocalMiller([i, j, k])
@@ -36,7 +36,7 @@ abstract type AbstractMillerBravais <: Indices end
 Represent the Miller–Bravais indices in the real space (crystal directions).
 """
 struct MillerBravais <: AbstractMillerBravais
-    data::SVector{4,Int}
+    data::SVector{4,Int64}
     function MillerBravais(v)
         @assert v[3] == -v[1] - v[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
         return new(iszero(v) ? v : v .÷ gcd(v))
@@ -49,7 +49,7 @@ MillerBravais(i, j, k, l) = MillerBravais([i, j, k, l])
 Represent the Miller–Bravais indices in the reciprocal space (planes).
 """
 struct ReciprocalMillerBravais <: AbstractMillerBravais
-    data::SVector{4,Int}
+    data::SVector{4,Int64}
     function ReciprocalMillerBravais(v)
         @assert v[3] == -v[1] - v[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
         return new(iszero(v) ? v : v .÷ gcd(v))
@@ -65,7 +65,7 @@ function _indices_str(r::Regex, s::AbstractString)
     else
         brackets = first(m.captures) * last(m.captures)
         indices = map(filter(x -> x !== nothing, m.captures[2:(end-1)])) do index
-            parse(Int, index)
+            parse(Int64, index)
         end
         if brackets in ("()", "{}")
             if m[4] === nothing
