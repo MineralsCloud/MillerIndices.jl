@@ -8,6 +8,7 @@ Combinatorics = "861a8166-3701-5b0c-9a16-15d98fcdc6aa"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [compat]
+Combinatorics = "1"
 julia = "1"
 
 [extras]
