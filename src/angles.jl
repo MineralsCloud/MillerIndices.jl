@@ -1,5 +1,7 @@
 using CrystallographyBase: MetricTensor
-using LinearAlgebra: norm
+using LinearAlgebra: norm, dot
+
+export directioncosine, directionangle, interplanar_spacing
 
 """
     directioncosine(𝐚::AbstractVector, g::MetricTensor, 𝐛::AbstractVector)
