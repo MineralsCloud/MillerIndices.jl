@@ -4,10 +4,7 @@ juliaup default release</code></pre><p>to configure the <code>julia</code> comma
 
 julia&gt; Pkg.update()
 
-julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre><code class="language-julia-repl hljs">julia&gt; using MillerIndices</code></pre><p>and have fun!</p></li><li><p>While using, please keep this Julia session alive. Restarting might cost some time.</p></li></ol><p>If you want to install the latest in-development (probably buggy) version of <code>MillerIndices</code>, type</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.update()</code><code class="nohighlight hljs ansi" style="display:block;">┌ Warning: could not download https://pkg.julialang.org/registries
-│   exception = HTTP/2 301 (Operation too slow. Less than 1 bytes/sec transferred the last 20 seconds) while requesting https://pkg.julialang.org/registries
-└ @ Pkg.Registry /cache/build/default-amdci4-2/julialang/julia-release-1-dot-8/usr/share/julia/stdlib/v1.8/Pkg/src/Registry/Registry.jl:68
-    Updating registry at `~/.julia/registries/General`
+julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre><code class="language-julia-repl hljs">julia&gt; using MillerIndices</code></pre><p>and have fun!</p></li><li><p>While using, please keep this Julia session alive. Restarting might cost some time.</p></li></ol><p>If you want to install the latest in-development (probably buggy) version of <code>MillerIndices</code>, type</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.update()</code><code class="nohighlight hljs ansi" style="display:block;">    Updating registry at `~/.julia/registries/General`
     Updating git-repo `https://github.com/JuliaRegistries/General.git`
   No Changes to `~/work/MillerIndices.jl/MillerIndices.jl/docs/build/developers/Project.toml`
   No Changes to `~/work/MillerIndices.jl/MillerIndices.jl/docs/build/developers/Manifest.toml`</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; pkg&quot;add https://github.com/MineralsCloud/MillerIndices.jl&quot;</code><code class="nohighlight hljs ansi" style="display:block;">┌ Warning: The Pkg REPL mode is intended for interactive use only, and should not be used from scripts. It is recommended to use the functional API instead.
@@ -19,15 +16,14 @@ julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre
   [f41335bc] ~ MillerIndices v0.1.0 ⇒ v0.1.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`
     Updating `~/work/MillerIndices.jl/MillerIndices.jl/docs/build/developers/Manifest.toml`
   [187b0558] + ConstructionBase v1.4.1
-  [150eb455] + CoordinateTransformations v0.6.2
-  [93b1d1cd] + CrystallographyBase v0.8.0
+  [93b1d1cd] + CrystallographyBase v0.10.0
   [4e289a0a] + EnumX v1.0.4
   [d9f16b24] + Functors v0.4.2
+  [c116f080] + Mendeleev v0.3.0
   [f41335bc] ~ MillerIndices v0.1.0 ⇒ v0.1.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`
-  [7b2266bf] + PeriodicTable v1.1.3
   [6ec83bb0] + StructEquality v2.1.0
   [1986cc42] + Unitful v1.12.2
-  [8dfed614] + Test
+  [a7773ee8] + UnitfulAtomic v1.0.0
 Precompiling project...
 <span class="sgr33">  ✓ </span>MillerIndices
   1 dependency successfully precompiled in 2 seconds. 31 already precompiled.
@@ -42,4 +38,4 @@ Precompiling project...
 
 julia&gt; Pkg.rm(&quot;MillerIndices&quot;)
 
-julia&gt; Pkg.gc()</code></pre></li><li><p>Press <code>ctrl+d</code> to quit the current session. Start a new Julia session and reinstall <code>MillerIndices</code>.</p></li></ol></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../public/">Public API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Wednesday 18 January 2023 01:36">Wednesday 18 January 2023</span>. Using Julia version 1.8.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+julia&gt; Pkg.gc()</code></pre></li><li><p>Press <code>ctrl+d</code> to quit the current session. Start a new Julia session and reinstall <code>MillerIndices</code>.</p></li></ol></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../public/">Public API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.23 on <span class="colophon-date" title="Sunday 22 January 2023 00:34">Sunday 22 January 2023</span>. Using Julia version 1.8.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
