@@ -15,7 +15,8 @@ Calculate the angle (in degrees) between two directions by:
              = \\frac{\\sum_{ij} x_i g_{ij} y_j}{\\sqrt{\\sum_{ij} x_i g_{ij} x_j} \\sqrt{\\sum_{ij} y_i g_{ij} y_j}}.
 ```
 """
-anglebtw(𝐱, 𝐲, g::MetricTensor) = acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
+anglebtw(𝐱, 𝐲, g::MetricTensor) =
+    180 - acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
 
 """
     interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor)
