@@ -1,6 +1,6 @@
 module MillerIndices
 
 include("miller.jl")
-include("angles.jl")
+include("angle.jl")
 
 end

@@ -3,5 +3,5 @@ using Test
 
 @testset "MillerIndices.jl" begin
     include("miller.jl")
-    include("angles.jl")
+    include("angle.jl")
 end
