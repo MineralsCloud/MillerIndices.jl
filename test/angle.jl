@@ -2,20 +2,25 @@ using CrystallographyBase: Lattice, MetricTensor
 using LinearAlgebra: diagm
 using Unitful: @u_str
 
-@testset "Test the angle in a tetragonal lattice" begin
+# From Katayun Barmak's lecture notes
+@testset "Test the angle between [1 2 1] and [0 0 1] directions in a tetragonal system" begin
     g = MetricTensor(2, 2, 3, 90, 90, 90)  # Primitive tetragonal
     @test g == MetricTensor(Lattice(diagm([2, 2, 3])))
     @test g == MetricTensor([2, 0, 0], [0, 2, 0], [0, 0, 3])
     a = Miller(1, 2, 1)
     b = Miller(0, 0, 1)
-    @test cosd(anglebtw(a, b, g)) ≈ sqrt(9 / 29)
+    θ = anglebtw(a, b, g)
+    @test θ ≈ 56.14548518737948
+    @test cosd(θ) ≈ sqrt(9 / 29)
 end
 
 # From https://ssd.phys.strath.ac.uk/wp-content/uploads/Crystallographic_maths.pdf
-@testset "Find the angle between [100] and [111] directions in GaN" begin
+@testset "Test the angle between [1 0 0] and [1 1 1] directions in GaN" begin
     a, c = 3.19u"angstrom", 5.19u"angstrom"
     g = MetricTensor(a, a, c, 90, 90, 120)
-    @test cosd(anglebtw(Miller(1, 0, 0), Miller(1, 1, 1), g)) ≈ a / 2 / sqrt(a^2 + c^2)
+    θ = anglebtw(Miller(1, 0, 0), Miller(1, 1, 1), g)
+    @test θ ≈ 74.82193526845971
+    @test cosd(θ) ≈ a / 2 / sqrt(a^2 + c^2)
 end
 
 # From Katayun Barmak's lecture notes
