@@ -18,14 +18,14 @@ Calculate the angle (in degrees) between two directions by:
 !!! note
     For the angle between two plane normals, the result is ``180 - \\theta``.
 """
-anglebtw(𝐱::Miller, 𝐲::Miller, g::MetricTensor) =
-    acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
-anglebtw(𝐱::ReciprocalMiller, 𝐲::ReciprocalMiller, g::MetricTensor) =
-    180 - acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
-anglebtw(𝐱::MillerBravais, 𝐲::MillerBravais, g::MetricTensor) =
-    anglebtw(convert(Miller, 𝐱), convert(Miller, 𝐲), g)
-anglebtw(𝐱::ReciprocalMillerBravais, 𝐲::ReciprocalMillerBravais, g::MetricTensor) =
-    anglebtw(convert(ReciprocalMiller, 𝐱), convert(ReciprocalMiller, 𝐲), g)
+anglebtw(x::Miller, y::Miller, g::MetricTensor) =
+    acosd(dot(x, g, y) / lengthof(x, g) / lengthof(y, g))
+anglebtw(x::ReciprocalMiller, y::ReciprocalMiller, g::MetricTensor) =
+    180 - acosd(dot(x, g, y) / lengthof(x, g) / lengthof(y, g))
+anglebtw(x::MillerBravais, y::MillerBravais, g::MetricTensor) =
+    anglebtw(convert(Miller, x), convert(Miller, y), g)
+anglebtw(x::ReciprocalMillerBravais, y::ReciprocalMillerBravais, g::MetricTensor) =
+    anglebtw(convert(ReciprocalMiller, x), convert(ReciprocalMiller, y), g)
 
 """
     interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor)
@@ -36,16 +36,16 @@ Calculate the interplanar spacing by:
 d_{h\\ k \\ l} = \\frac{1}{\\lvert \\mathbf{x}_{h\\ k \\ l}\\rvert}.
 ```
 """
-interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor) =
-    inv(lengthof(𝐱, g))
+interplanar_spacing(x::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor) =
+    inv(lengthof(x, g))
 
 """
     lengthof(𝐱::Union{AbstractMiller,AbstractMillerBravais}, g::MetricTensor)
 
 Calculate the magnitude of a given indices with respect to a specified metric tensor.
 """
-lengthof(𝐱::AbstractMiller, g::MetricTensor) = sqrt(dot(𝐱, g, 𝐱))
-function lengthof(𝐱::AbstractMillerBravais, g::MetricTensor)
-    𝐱′ = convert(𝐱 isa MillerBravais ? Miller : ReciprocalMiller, 𝐱)
-    return lengthof(𝐱′, g)
+lengthof(x::AbstractMiller, g::MetricTensor) = sqrt(dot(x, g, x))
+function lengthof(x::AbstractMillerBravais, g::MetricTensor)
+    x′ = convert(x isa MillerBravais ? Miller : ReciprocalMiller, x)
+    return lengthof(x′, g)
 end

@@ -14,7 +14,7 @@ Represent the Miller indices in the real space (crystal directions).
 """
 struct Miller <: AbstractMiller
     data::SVector{3,Int64}
-    Miller(v) = new(iszero(v) ? v : v .÷ gcd(v))
+    Miller(data) = new(iszero(data) ? data : data .÷ gcd(data))
 end
 Miller(i, j, k) = Miller(Base.vect(i, j, k))
 """
@@ -24,7 +24,7 @@ Represent the Miller indices in the reciprocal space (planes).
 """
 struct ReciprocalMiller <: AbstractMiller
     data::SVector{3,Int64}
-    ReciprocalMiller(v) = new(iszero(v) ? v : v .÷ gcd(v))
+    ReciprocalMiller(data) = new(iszero(data) ? data : data .÷ gcd(data))
 end
 ReciprocalMiller(i, j, k) = ReciprocalMiller(Base.vect(i, j, k))
 abstract type AbstractMillerBravais <: Indices end
@@ -35,9 +35,9 @@ Represent the Miller–Bravais indices in the real space (crystal directions).
 """
 struct MillerBravais <: AbstractMillerBravais
     data::SVector{4,Int64}
-    function MillerBravais(v)
-        @assert v[3] == -v[1] - v[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
-        return new(iszero(v) ? v : v .÷ gcd(v))
+    function MillerBravais(data)
+        @assert data[3] == -data[1] - data[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
+        return new(iszero(data) ? data : data .÷ gcd(data))
     end
 end
 MillerBravais(i, j, k, l) = MillerBravais(Base.vect(i, j, k, l))
@@ -48,9 +48,9 @@ Represent the Miller–Bravais indices in the reciprocal space (planes).
 """
 struct ReciprocalMillerBravais <: AbstractMillerBravais
     data::SVector{4,Int64}
-    function ReciprocalMillerBravais(v)
-        @assert v[3] == -v[1] - v[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
-        return new(iszero(v) ? v : v .÷ gcd(v))
+    function ReciprocalMillerBravais(data)
+        @assert data[3] == -data[1] - data[2] "the 3rd index of `MillerBravais` should equal to the negation of the first two!"
+        return new(iszero(data) ? data : data .÷ gcd(data))
     end
 end
 ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais(Base.vect(i, j, k, l))
@@ -59,22 +59,22 @@ const REGEX = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[
 
 # This is a helper function and should not be exported!
 function _m_str(s::AbstractString)
-    m = match(REGEX, strip(s))
-    if m === nothing
+    matched = match(REGEX, strip(s))
+    if matched === nothing
         throw(ArgumentError("not a valid expression!"))
     else
-        brackets = first(m.captures) * last(m.captures)
-        indices = map(filter(x -> x !== nothing, m.captures[2:(end - 1)])) do index
+        brackets = first(matched.captures) * last(matched.captures)
+        indices = map(filter(!isnothing, matched.captures[2:(end - 1)])) do index
             parse(Int64, index)
         end
         if brackets in ("()", "{}")
-            if m[4] === nothing
+            if matched[4] === nothing
                 return ReciprocalMiller(indices...)
             else
                 return ReciprocalMillerBravais(indices...)
             end
         elseif brackets ∈ ("[]", "<>")
-            if m[4] === nothing
+            if matched[4] === nothing
                 return Miller(indices...)
             else
                 return MillerBravais(indices...)
@@ -139,10 +139,10 @@ function familyof(mb::AbstractMillerBravais)
 end
 function familyof(m::AbstractMiller)
     mb = convert(m isa Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
-    vec = familyof(mb)
-    return map(typeof(m), vec)
+    mbs = familyof(mb)
+    return map(typeof(m), mbs)
 end
-_predicate(v) = v[3] == -v[1] - v[2]
+_predicate(x) = x[3] == -x[1] - x[2]
 
 Base.parent(x::Indices) = x.data
 
@@ -153,23 +153,23 @@ Base.IndexStyle(::Type{<:Indices}) = IndexLinear()
 
 Base.getindex(x::Indices, i::Int) = getindex(x.data, i)
 
-Miller(mb::MillerBravais) = Miller(2 * mb[1] + mb[2], 2 * mb[2] + mb[1], mb[4])
+Miller(x::MillerBravais) = Miller(2 * x[1] + x[2], 2 * x[2] + x[1], x[4])
 
-ReciprocalMiller(mb::ReciprocalMillerBravais) = ReciprocalMiller(mb[1], mb[2], mb[4])
+ReciprocalMiller(x::ReciprocalMillerBravais) = ReciprocalMiller(x[1], x[2], x[4])
 
-MillerBravais(m::Miller) =
-    MillerBravais(2 * m[1] - m[2], 2 * m[2] - m[1], -(m[1] + m[2]), 3 * m[3])
+MillerBravais(x::Miller) =
+    MillerBravais(2 * x[1] - x[2], 2 * x[2] - x[1], -(x[1] + x[2]), 3 * x[3])
 
-ReciprocalMillerBravais(m::ReciprocalMiller) =
-    ReciprocalMillerBravais(m[1], m[2], -(m[1] + m[2]), m[3])
+ReciprocalMillerBravais(x::ReciprocalMiller) =
+    ReciprocalMillerBravais(x[1], x[2], -(x[1] + x[2]), x[3])
 
 # See https://docs.julialang.org/en/v1/manual/conversion-and-promotion/#Defining-New-Conversions
 Base.convert(::Type{T}, x::T) where {T<:Indices} = x
-Base.convert(::Type{Miller}, mb::MillerBravais) = Miller(mb)
-Base.convert(::Type{ReciprocalMiller}, mb::ReciprocalMillerBravais) = ReciprocalMiller(mb)
-Base.convert(::Type{MillerBravais}, m::Miller) = MillerBravais(m)
-Base.convert(::Type{ReciprocalMillerBravais}, m::ReciprocalMiller) =
-    ReciprocalMillerBravais(m)
+Base.convert(::Type{Miller}, x::MillerBravais) = Miller(x)
+Base.convert(::Type{ReciprocalMiller}, x::ReciprocalMillerBravais) = ReciprocalMiller(x)
+Base.convert(::Type{MillerBravais}, x::Miller) = MillerBravais(x)
+Base.convert(::Type{ReciprocalMillerBravais}, x::ReciprocalMiller) =
+    ReciprocalMillerBravais(x)
 
 Base.show(io::IO, x::Union{Miller,MillerBravais}) = print(io, '<', join(x.data, " "), '>')
 Base.show(io::IO, x::Union{ReciprocalMiller,ReciprocalMillerBravais}) =
