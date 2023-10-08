@@ -16,7 +16,7 @@ struct Miller <: AbstractMiller
     data::SVector{3,Int64}
     Miller(v) = new(iszero(v) ? v : v .÷ gcd(v))
 end
-Miller(i, j, k) = Miller([i, j, k])
+Miller(i, j, k) = Miller(Base.vect(i, j, k))
 """
     ReciprocalMiller(i, j, k)
 
@@ -26,7 +26,7 @@ struct ReciprocalMiller <: AbstractMiller
     data::SVector{3,Int64}
     ReciprocalMiller(v) = new(iszero(v) ? v : v .÷ gcd(v))
 end
-ReciprocalMiller(i, j, k) = ReciprocalMiller([i, j, k])
+ReciprocalMiller(i, j, k) = ReciprocalMiller(Base.vect(i, j, k))
 abstract type AbstractMillerBravais <: Indices end
 """
     MillerBravais(i, j, k, l)
@@ -40,7 +40,7 @@ struct MillerBravais <: AbstractMillerBravais
         return new(iszero(v) ? v : v .÷ gcd(v))
     end
 end
-MillerBravais(i, j, k, l) = MillerBravais([i, j, k, l])
+MillerBravais(i, j, k, l) = MillerBravais(Base.vect(i, j, k, l))
 """
     ReciprocalMillerBravais(i, j, k, l)
 
@@ -53,7 +53,7 @@ struct ReciprocalMillerBravais <: AbstractMillerBravais
         return new(iszero(v) ? v : v .÷ gcd(v))
     end
 end
-ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais([i, j, k, l])
+ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais(Base.vect(i, j, k, l))
 
 const REGEX = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
 
