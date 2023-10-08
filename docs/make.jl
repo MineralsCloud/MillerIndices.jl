@@ -2,9 +2,11 @@ using MillerIndices
 using Documenter
 
 DocMeta.setdocmeta!(MillerIndices, :DocTestSetup, :(using MillerIndices); recursive=true)
+# See https://stackoverflow.com/questions/70137119/how-to-include-the-docstring-for-a-function-from-another-package-in-my-julia-doc
+DocMeta.setdocmeta!(CrystallographyBase, :DocTestSetup, :(using CrystallographyBase); recursive=true)
 
 makedocs(;
-    modules=[MillerIndices],
+    modules=[MillerIndices, CrystallographyBase],
     authors="singularitti <singularitti@outlook.com> and contributors",
     repo="https://github.com/MineralsCloud/MillerIndices.jl/blob/{commit}{path}#{line}",
     sitename="MillerIndices.jl",
