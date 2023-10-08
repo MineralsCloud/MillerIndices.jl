@@ -162,6 +162,7 @@ MillerBravais(m::Miller) =
 ReciprocalMillerBravais(m::ReciprocalMiller) =
     ReciprocalMillerBravais(m[1], m[2], -(m[1] + m[2]), m[3])
 
+# See https://docs.julialang.org/en/v1/manual/conversion-and-promotion/#Defining-New-Conversions
 Base.convert(::Type{T}, x::T) where {T<:Indices} = x
 Base.convert(::Type{Miller}, mb::MillerBravais) = Miller(mb)
 Base.convert(::Type{ReciprocalMiller}, mb::ReciprocalMillerBravais) = ReciprocalMiller(mb)
