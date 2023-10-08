@@ -153,15 +153,14 @@ Base.IndexStyle(::Type{<:Indices}) = IndexLinear()
 
 Base.getindex(x::Indices, i::Int) = getindex(x.data, i)
 
-Miller(x::MillerBravais) = Miller(2 * x[1] + x[2], 2 * x[2] + x[1], x[4])
+Miller(x::MillerBravais) = Miller(2x[1] + x[2], 2x[2] + x[1], x[4])
 
 ReciprocalMiller(x::ReciprocalMillerBravais) = ReciprocalMiller(x[1], x[2], x[4])
 
-MillerBravais(x::Miller) =
-    MillerBravais(2 * x[1] - x[2], 2 * x[2] - x[1], -(x[1] + x[2]), 3 * x[3])
+MillerBravais(x::Miller) = MillerBravais(2x[1] - x[2], 2x[2] - x[1], -x[1] - x[2], 3x[3])
 
 ReciprocalMillerBravais(x::ReciprocalMiller) =
-    ReciprocalMillerBravais(x[1], x[2], -(x[1] + x[2]), x[3])
+    ReciprocalMillerBravais(x[1], x[2], -x[1] - x[2], x[3])
 
 # See https://docs.julialang.org/en/v1/manual/conversion-and-promotion/#Defining-New-Conversions
 Base.convert(::Type{T}, x::T) where {T<:Indices} = x
