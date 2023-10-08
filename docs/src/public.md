@@ -10,7 +10,7 @@ Miller
 MillerBravais
 ReciprocalMiller
 ReciprocalMillerBravais
-listfamily
+familyof
 anglebtw
 interplanar_spacing
 @m_str
