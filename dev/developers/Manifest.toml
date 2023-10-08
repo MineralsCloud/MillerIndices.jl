@@ -158,7 +158,7 @@ version = "2.28.2+0"
 
 [[deps.MillerIndices]]
 deps = ["Combinatorics", "CrystallographyBase", "LinearAlgebra", "StaticArrays"]
-git-tree-sha1 = "5f72e2d0f5bb5c43fde444efbeb52b5a36dd65b8"
+git-tree-sha1 = "60fdf9de4d53d67139feb1bba88240c76885e7e8"
 repo-rev = "main"
 repo-url = "https://github.com/MineralsCloud/MillerIndices.jl"
 uuid = "f41335bc-9121-4844-b5af-1d5721981e9a"
