@@ -55,9 +55,11 @@ struct ReciprocalMillerBravais <: AbstractMillerBravais
 end
 ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais([i, j, k, l])
 
+const REGEX = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
+
 # This is a helper function and should not be exported!
-function _indices_str(r::Regex, s::AbstractString)
-    m = match(r, strip(s))
+function _m_str(s::AbstractString)
+    m = match(REGEX, strip(s))
     if m === nothing
         throw(ArgumentError("not a valid expression!"))
     else
@@ -117,9 +119,8 @@ julia> m"(1, 0, -1, 0)"
   0
 ```
 """
-macro m_str(s)
-    r = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
-    return _indices_str(r, s)
+macro m_str(s)  # See https://github.com/JuliaLang/julia/blob/v1.9.3/base/regex.jl#L112
+    return _m_str(s)
 end
 
 """
