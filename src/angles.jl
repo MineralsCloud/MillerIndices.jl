@@ -1,14 +1,14 @@
 using CrystallographyBase: MetricTensor
 using LinearAlgebra: norm, dot
 
-export directioncosine, directionangle, interplanar_spacing
+export angle, directionangle, interplanar_spacing
 
 """
-    directioncosine(𝐚::AbstractVector, g::MetricTensor, 𝐛::AbstractVector)
+    angle(𝐚::AbstractVector, g::MetricTensor, 𝐛::AbstractVector)
 
-Get the direction cosine of two vectors and a `MetricTensor`.
+Get the angle between two directions.
 """
-directioncosine(𝐚, g::MetricTensor, 𝐛) = dot(𝐚, g, 𝐛) / (norm(𝐚, g) * norm(𝐛, g))
+angle(𝐚, g::MetricTensor, 𝐛) = dot(𝐚, g, 𝐛) / (norm(𝐚, g) * norm(𝐛, g))
 
 """
     directionangle(𝐚::AbstractVector, g::MetricTensor, 𝐛::AbstractVector)
@@ -16,7 +16,7 @@ directioncosine(𝐚, g::MetricTensor, 𝐛) = dot(𝐚, g, 𝐛) / (norm(𝐚, 
 Get the direction angle of two vectors and a `MetricTensor`.
 """
 directionangle(𝐚::AbstractVector, g::MetricTensor, 𝐛::AbstractVector) =
-    acosd(directioncosine(𝐚, g, 𝐛))
+    acosd(angle(𝐚, g, 𝐛))
 
 """
     interplanar_spacing(𝐚::AbstractVector, g::MetricTensor)
