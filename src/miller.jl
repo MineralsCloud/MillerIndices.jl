@@ -119,8 +119,8 @@ julia> m"(1, 0, -1, 0)"
   0
 ```
 """
-macro m_str(s)
-    return _m_str(REGEX, s)
+macro m_str(s)  # See https://github.com/JuliaLang/julia/blob/v1.9.3/base/regex.jl#L112
+    return _m_str(s)
 end
 
 """
