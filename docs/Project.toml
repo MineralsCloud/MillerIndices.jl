@@ -1,3 +1,5 @@
 [deps]
+CrystallographyBase = "93b1d1cd-a8ea-4aa5-adb1-b2407ea0ba8d"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 MillerIndices = "f41335bc-9121-4844-b5af-1d5721981e9a"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
