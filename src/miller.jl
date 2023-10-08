@@ -140,7 +140,7 @@ end
 function familyof(m::AbstractMiller)
     mb = convert(m isa Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
     vec = familyof(mb)
-    return map(Base.Fix1(convert, typeof(m)), vec)
+    return map(typeof(m), vec)
 end
 _predicate(v) = v[3] == -v[1] - v[2]
 
