@@ -2,7 +2,7 @@ using Combinatorics: permutations
 using StaticArrays: SVector
 
 export Miller, MillerBravais, ReciprocalMiller, ReciprocalMillerBravais
-export family, @m_str
+export listfamily, @m_str
 
 "Represent the Miller indices or Miller–Bravais indices."
 abstract type Indices <: AbstractVector{Int64} end
@@ -124,24 +124,25 @@ macro m_str(s)  # See https://github.com/JuliaLang/julia/blob/v1.9.3/base/regex.
 end
 
 """
-    family(x::Union{Miller,MillerBravais,ReciprocalMiller,ReciprocalMillerBravais})
+    listfamily(x::Union{Miller,MillerBravais,ReciprocalMiller,ReciprocalMillerBravais})
 
 List the all the directions/planes that are equivalent to `x` by symmetry.
 """
-function family(mb::T) where {T<:AbstractMillerBravais}
+function listfamily(mb::AbstractMillerBravais)
     perm = collect(permutations(mb[1:3]))  # Permute the first 3 indices for equivalent basis vectors
-    negate = -perm  # Use negative indices
+    negate = map(-, perm)  # Use negative indices
     pool = unique(append!(perm, negate))
-    allowed = filter(v -> v[3] == -v[1] - v[2], pool)
+    allowed = filter(_predicate, pool)
     return map(allowed) do x
-        T(x..., mb[4])  # Add the 4th index back
+        typeof(mb)(x..., mb[4])  # Add the 4th index back
     end
 end
-function family(m::T) where {T<:AbstractMiller}
-    mb = convert(T <: Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
-    vec = family(mb)
-    return map(x -> convert(T, x), vec)
+function listfamily(m::AbstractMiller)
+    mb = convert(typeof(m) <: Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
+    vec = listfamily(mb)
+    return map(Base.Fix1(convert, typeof(m)), vec)
 end
+_predicate(v) = v[3] == -v[1] - v[2]
 
 Base.parent(x::Indices) = x.data
 
