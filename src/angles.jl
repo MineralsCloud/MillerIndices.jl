@@ -1,5 +1,5 @@
 using CrystallographyBase: MetricTensor
-using LinearAlgebra: norm, dot
+using LinearAlgebra: dot
 
 import CrystallographyBase: lengthof
 
@@ -10,14 +10,15 @@ export angle, interplanar_spacing
 
 Get the angle (in degrees) between two directions.
 """
-angle(𝐚, g::MetricTensor, 𝐛) = acosd(dot(𝐚, g, 𝐛) / (norm(𝐚, g) * norm(𝐛, g)))
+angle(𝐱, 𝐲, g::MetricTensor) = acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
 
 """
     interplanar_spacing(𝐚::AbstractVector, g::MetricTensor)
 
 Get the interplanar spacing from a `MetricTensor`.
 """
-interplanar_spacing(𝐚::AbstractVector, g::MetricTensor) = inv(norm(𝐚, g))
+interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor) =
+    inv(lengthof(𝐱, g))
 
 lengthof(𝐱::AbstractMiller, g::MetricTensor) = sqrt(dot(𝐱, g, 𝐱))
 function lengthof(𝐱::AbstractMillerBravais, g::MetricTensor)
