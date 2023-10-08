@@ -30,5 +30,6 @@ ReciprocalMillerBravais
 familyof
 anglebtw
 interplanar_spacing
+lengthof
 @m_str
 ```

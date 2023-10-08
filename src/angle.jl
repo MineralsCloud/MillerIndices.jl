@@ -36,6 +36,11 @@ d_{h\\ k \\ l} = \\frac{1}{\\lvert \\mathbf{x}_{h\\ k \\ l}\\rvert}.
 interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor) =
     inv(lengthof(𝐱, g))
 
+"""
+    lengthof(𝐱::Union{AbstractMiller,AbstractMillerBravais}, g::MetricTensor)
+
+Calculate the magnitude of a given indices with respect to a specified metric tensor.
+"""
 lengthof(𝐱::AbstractMiller, g::MetricTensor) = sqrt(dot(𝐱, g, 𝐱))
 function lengthof(𝐱::AbstractMillerBravais, g::MetricTensor)
     𝐱′ = convert(𝐱 isa MillerBravais ? Miller : ReciprocalMiller, 𝐱)
