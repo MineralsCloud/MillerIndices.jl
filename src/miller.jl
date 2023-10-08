@@ -55,6 +55,8 @@ struct ReciprocalMillerBravais <: AbstractMillerBravais
 end
 ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais([i, j, k, l])
 
+const REGEX = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
+
 # This is a helper function and should not be exported!
 function _indices_str(r::Regex, s::AbstractString)
     m = match(r, strip(s))
@@ -118,8 +120,7 @@ julia> m"(1, 0, -1, 0)"
 ```
 """
 macro m_str(s)
-    r = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
-    return _indices_str(r, s)
+    return _m_str(REGEX, s)
 end
 
 """
