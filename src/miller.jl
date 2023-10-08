@@ -128,20 +128,21 @@ end
 
 List the all the directions/planes that are equivalent to `x` by symmetry.
 """
-function family(mb::T) where {T<:AbstractMillerBravais}
+function family(mb::AbstractMillerBravais)
     perm = collect(permutations(mb[1:3]))  # Permute the first 3 indices for equivalent basis vectors
-    negate = -perm  # Use negative indices
+    negate = map(-, perm)  # Use negative indices
     pool = unique(append!(perm, negate))
-    allowed = filter(v -> v[3] == -v[1] - v[2], pool)
+    allowed = filter(_predicate, pool)
     return map(allowed) do x
-        T(x..., mb[4])  # Add the 4th index back
+        typeof(mb)(x..., mb[4])  # Add the 4th index back
     end
 end
-function family(m::T) where {T<:AbstractMiller}
-    mb = convert(T <: Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
+function family(m::AbstractMiller)
+    mb = convert(typeof(m) <: Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
     vec = family(mb)
-    return map(x -> convert(T, x), vec)
+    return map(Base.Fix1(convert, typeof(m)), vec)
 end
+_predicate(v) = v[3] == -v[1] - v[2]
 
 Base.parent(x::Indices) = x.data
 
