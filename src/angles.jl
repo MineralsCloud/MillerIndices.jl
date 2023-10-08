@@ -20,3 +20,7 @@ Get the interplanar spacing from a `MetricTensor`.
 interplanar_spacing(𝐚::AbstractVector, g::MetricTensor) = inv(norm(𝐚, g))
 
 lengthof(𝐚::AbstractMiller, g::MetricTensor) = sqrt(dot(𝐚, g, 𝐚))
+function lengthof(𝐚::AbstractMillerBravais, g::MetricTensor)
+    𝐚′ = convert(𝐚 isa MillerBravais ? Miller : ReciprocalMiller, 𝐚)
+    return lengthof(𝐚′, g)
+end
