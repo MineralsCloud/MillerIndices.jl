@@ -48,28 +48,28 @@ familyof(MillerBravais(-1, -1, 2, 3))
 
 Determine the angle between two vectors using a metric tensor.
 
-1. [Test the angle between ``[1 2 1]`` and ``[0 0 1]`` directions in gallium nitride](https://ssd.phys.strath.ac.uk/wp-content/uploads/Crystallographic_maths.pdf):
+### [Test the angle between ``[1\ 2\ 1]`` and ``[0\ 0\ 1]`` directions in gallium nitride](https://ssd.phys.strath.ac.uk/wp-content/uploads/Crystallographic_maths.pdf)
 
-   ```@repl millerindices
-   using CrystallographyBase, Unitful
-   a, c = 3.19u"angstrom", 5.19u"angstrom"
-   g = MetricTensor(a, a, c, 90, 90, 120)
-   θ = anglebtw(Miller(1, 0, 0), Miller(1, 1, 1), g)
-   ```
+```@repl millerindices
+using CrystallographyBase, Unitful
+a, c = 3.19u"angstrom", 5.19u"angstrom"
+g = MetricTensor(a, a, c, 90, 90, 120)
+θ = anglebtw(Miller(1, 0, 0), Miller(1, 1, 1), g)
+```
 
-2. The length of the reciprocal lattice vector and the interplanar spacing:
+### Calculate the length of the reciprocal lattice vector and the interplanar spacing
 
-   ```@repl millerindices
-   g = inv(MetricTensor(2, 4, 3, 90, 45, 90))
-   lengthof(ReciprocalMiller(1, 0, 2), g)
-   interplanar_spacing(ReciprocalMiller(1, 0, 2), g)
-   ```
+```@repl millerindices
+g = inv(MetricTensor(2, 4, 3, 90, 45, 90))
+lengthof(ReciprocalMiller(1, 0, 2), g)
+interplanar_spacing(ReciprocalMiller(1, 0, 2), g)
+```
 
-3. Calculate the angle between two plane normals:
+### Calculate the angle between two plane normals
 
-   ```@repl millerindices
-   g = inv(MetricTensor(4, 6, 5, 90, 135, 90))  # Monoclinic
-   𝐱 = ReciprocalMiller(1, 0, 1)
-   𝐲 = ReciprocalMiller(-2, 0, 1)
-   anglebtw(𝐱, 𝐲, g)
-   ```
+```@repl millerindices
+g = inv(MetricTensor(4, 6, 5, 90, 135, 90))
+𝐱 = ReciprocalMiller(1, 0, 1)
+𝐲 = ReciprocalMiller(-2, 0, 1)
+anglebtw(𝐱, 𝐲, g)
+```

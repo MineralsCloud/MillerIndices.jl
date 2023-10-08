@@ -44,10 +44,10 @@ This repository is created and maintained by
 2. Macro for easy generation:
 
    ```julia
-   m"[-1, 0, 1]"        # Miller
-   m"<2, -1, -1, 3>"    # MillerBravais
-   m"(-1, 0, 1)"        # ReciprocalMiller
-   m"(1, 0, -1, 0)"     # ReciprocalMillerBravais
+   m"[-1, 0, 1]"      # Miller
+   m"<2, -1, -1, 3>"  # MillerBravais
+   m"(-1, 0, 1)"      # ReciprocalMiller
+   m"(1, 0, -1, 0)"   # ReciprocalMillerBravais
    ```
 
 3. List equivalent directions/planes

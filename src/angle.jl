@@ -6,7 +6,10 @@ import CrystallographyBase: lengthof
 export anglebtw, interplanar_spacing, lengthof
 
 """
-    anglebtw(𝐱, 𝐲, g::MetricTensor)
+    anglebtw(x::Miller, y::Miller, g::MetricTensor)
+    anglebtw(x::MillerBravais, y::MillerBravais, g::MetricTensor)
+    anglebtw(x::ReciprocalMiller, y::ReciprocalMiller, g::MetricTensor)
+    anglebtw(x::ReciprocalMillerBravais, y::ReciprocalMillerBravais, g::MetricTensor)
 
 Calculate the angle (in degrees) between two directions by:
 
@@ -28,7 +31,7 @@ anglebtw(x::ReciprocalMillerBravais, y::ReciprocalMillerBravais, g::MetricTensor
     anglebtw(convert(ReciprocalMiller, x), convert(ReciprocalMiller, y), g)
 
 """
-    interplanar_spacing(𝐱::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor)
+    interplanar_spacing(x::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::MetricTensor)
 
 Calculate the interplanar spacing by:
 
@@ -40,7 +43,7 @@ interplanar_spacing(x::Union{ReciprocalMiller,ReciprocalMillerBravais}, g::Metri
     inv(lengthof(x, g))
 
 """
-    lengthof(𝐱::Union{AbstractMiller,AbstractMillerBravais}, g::MetricTensor)
+    lengthof(x::Union{AbstractMiller,AbstractMillerBravais}, g::MetricTensor)
 
 Calculate the magnitude of a given indices with respect to a specified metric tensor.
 """
