@@ -3,7 +3,7 @@ using LinearAlgebra: dot
 
 import CrystallographyBase: lengthof
 
-export MetricTensor, anglebtw, interplanar_spacing, lengthof
+export anglebtw, interplanar_spacing
 
 """
     anglebtw(𝐱, 𝐲, g::MetricTensor)
