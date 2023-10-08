@@ -143,12 +143,14 @@ function family(m::T) where {T<:AbstractMiller}
     return map(x -> convert(T, x), vec)
 end
 
+Base.parent(x::Indices) = x.data
+
 Base.size(::AbstractMiller) = (3,)
 Base.size(::AbstractMillerBravais) = (4,)
 
 Base.IndexStyle(::Type{<:Indices}) = IndexLinear()
 
-Base.getindex(x::Indices, i) = getindex(x.data, i)
+Base.getindex(x::Indices, i::Int) = getindex(x.data, i)
 
 Base.convert(::Type{T}, x::T) where {T<:Indices} = x
 Base.convert(::Type{Miller}, mb::MillerBravais) =
