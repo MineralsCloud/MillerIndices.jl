@@ -5,9 +5,9 @@ juliaup default release</code></pre><p>to configure the <code>julia</code> comma
 julia&gt; Pkg.update()
 
 julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre><code class="language-julia-repl hljs">julia&gt; using MillerIndices</code></pre><p>and have fun!</p></li><li><p>Please keep the Julia session active while using it. Restarting the session may take some time.</p></li></ol><p>If you want to install the latest in-development (probably buggy) version of MillerIndices, type</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using Pkg</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; Pkg.update()</code><code class="nohighlight hljs ansi" style="display:block;"><span class="sgr32"><span class="sgr1">    Updating</span></span> registry at `~/.julia/registries/General.toml`
-<span class="sgr32"><span class="sgr1">   Installed</span></span> CrystallographyBase ─ v0.13.0
-<span class="sgr32"><span class="sgr1">   Installed</span></span> CrystallographyCore ─ v0.3.2
 <span class="sgr32"><span class="sgr1">   Installed</span></span> MillerIndices ─────── v0.2.0
+<span class="sgr32"><span class="sgr1">   Installed</span></span> CrystallographyCore ─ v0.3.2
+<span class="sgr32"><span class="sgr1">   Installed</span></span> CrystallographyBase ─ v0.13.0
 <span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/MillerIndices.jl/MillerIndices.jl/docs/Project.toml`
 <span class="sgr33">⌅</span> <span class="sgr90">[93b1d1cd] </span><span class="sgr95">↓ CrystallographyBase v0.14.0 ⇒ v0.13.0</span>
   <span class="sgr90">[f41335bc] </span><span class="sgr93">↑ MillerIndices v0.1.0 ⇒ v0.2.0</span>
@@ -32,11 +32,11 @@ julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre
 <span class="sgr32"><span class="sgr1">   Resolving</span></span> package versions...
 <span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/MillerIndices.jl/MillerIndices.jl/docs/Project.toml`
   <span class="sgr90">[93b1d1cd] </span><span class="sgr93">↑ CrystallographyBase v0.13.0 ⇒ v0.14.0</span>
-  <span class="sgr90">[f41335bc] </span><span class="sgr93">~ MillerIndices v0.2.0 ⇒ v0.2.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`</span>
+  <span class="sgr90">[f41335bc] </span><span class="sgr93">~ MillerIndices v0.2.0 ⇒ v0.3.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`</span>
 <span class="sgr32"><span class="sgr1">    Updating</span></span> `~/work/MillerIndices.jl/MillerIndices.jl/docs/Manifest.toml`
   <span class="sgr90">[93b1d1cd] </span><span class="sgr93">↑ CrystallographyBase v0.13.0 ⇒ v0.14.0</span>
   <span class="sgr90">[80545937] </span><span class="sgr93">↑ CrystallographyCore v0.3.2 ⇒ v0.4.2</span>
-  <span class="sgr90">[f41335bc] </span><span class="sgr93">~ MillerIndices v0.2.0 ⇒ v0.2.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`</span>
+  <span class="sgr90">[f41335bc] </span><span class="sgr93">~ MillerIndices v0.2.0 ⇒ v0.3.0 `https://github.com/MineralsCloud/MillerIndices.jl#main`</span>
 <span class="sgr32"><span class="sgr1">Precompiling</span></span> project...
 <span class="sgr33">  ✓ </span><span class="sgr90">CrystallographyCore</span>
 <span class="sgr33">  ✓ </span>CrystallographyBase
@@ -52,4 +52,4 @@ julia&gt; Pkg.add(&quot;MillerIndices&quot;)</code></pre></li><li><p>Run</p><pre
 
 julia&gt; Pkg.rm(&quot;MillerIndices&quot;)
 
-julia&gt; Pkg.gc()</code></pre></li><li><p>Press <code>Ctrl+D</code> to quit the current session. Start a new Julia session and reinstall MillerIndices.</p></li></ol></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« Home</a><a class="docs-footer-nextpage" href="../examples/">Examples »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Sunday 8 October 2023 21:18">Sunday 8 October 2023</span>. Using Julia version 1.9.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+julia&gt; Pkg.gc()</code></pre></li><li><p>Press <code>Ctrl+D</code> to quit the current session. Start a new Julia session and reinstall MillerIndices.</p></li></ol></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../">« Home</a><a class="docs-footer-nextpage" href="../examples/">Examples »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Sunday 8 October 2023 21:29">Sunday 8 October 2023</span>. Using Julia version 1.9.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
