@@ -13,3 +13,19 @@ end
     g = MetricTensor(a, a, c, 90, 90, 120)
     @test directioncosine([1, 0, 0], g, [1, 1, 1]) == a / 2 / sqrt(a^2 + c^2)
 end
+
+# From Katayun Barmak's lecture notes
+@testset "Test the length of the reciprocal lattice vector and the interplanar spacing" begin
+    g = inv(MetricTensor(2, 4, 3, 90, 45, 90))  # Monoclinic
+    l₁₀₂ = lengthof(ReciprocalMiller(1, 0, 2), g)  # The length of the reciprocal lattice vector 𝐛₁₀₂
+    @test l₁₀₂ ≈ 0.6678920925619838
+    @test interplanar_spacing(ReciprocalMiller(1, 0, 2), g) ≈ 1.4972478505683084
+end
+
+# From Katayun Barmak's lecture notes
+@testset "Test angle between two plane normals" begin
+    g = inv(MetricTensor(4, 6, 5, 90, 135, 90))  # Monoclinic
+    𝐱 = ReciprocalMiller(1, 0, 1)
+    𝐲 = ReciprocalMiller(-2, 0, 1)
+    @test anglebtw(𝐱, 𝐲, g) ≈ 41.38888526317379
+end
