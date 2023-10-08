@@ -1,8 +1,7 @@
 using Combinatorics: permutations
 using StaticArrays: SVector
 
-export Miller, MillerBravais, ReciprocalMiller, ReciprocalMillerBravais
-export familyof, @m_str
+export Miller, MillerBravais, ReciprocalMiller, ReciprocalMillerBravais, familyof, @m_str
 
 "Represent the Miller indices or Miller–Bravais indices."
 abstract type Indices <: AbstractVector{Int64} end
