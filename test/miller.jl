@@ -93,14 +93,14 @@ end
 end
 @test convert(MillerBravais, Miller([1, 0, 0])) == MillerBravais([2, -1, -1, 0])
 
-@testset "Test `family`" begin
+@testset "Test `listfamily`" begin
     @testset "Test 1" begin
         m = Miller(-1, 0, 1)
-        @test Set(family(m)) == Set(
+        @test Set(listfamily(m)) == Set(
             Miller.([[1, 1, 1], [-1, 0, 1], [0, -1, 1], [-1, -1, 1], [1, 0, 1], [0, 1, 1]])
         )
         mb = MillerBravais(-1, -1, 2, 3)
-        @test Set(family(mb)) == Set(
+        @test Set(listfamily(mb)) == Set(
             MillerBravais.([
                 [1, 1, -2, 3],
                 [-2, 1, 1, 3],
@@ -113,13 +113,13 @@ end
     end
     @testset "Test 2" begin
         m = ReciprocalMiller(0, 1, 0)
-        @test Set(family(m)) == Set(
+        @test Set(listfamily(m)) == Set(
             ReciprocalMiller.([
                 [1, 0, 0], [0, 1, 0], [1, -1, 0], [-1, 0, 0], [0, -1, 0], [-1, 1, 0]
             ]),
         )
         mb = ReciprocalMillerBravais(0, -1, 1, 0)
-        @test Set(family(mb)) == Set(
+        @test Set(listfamily(mb)) == Set(
             ReciprocalMillerBravais.([
                 [1, 0, -1, 0],
                 [0, 1, -1, 0],
@@ -132,13 +132,13 @@ end
     end
     @testset "Test 3" begin
         m = ReciprocalMiller(1, 1, 0)
-        @test Set(family(m)) == Set(
+        @test Set(listfamily(m)) == Set(
             ReciprocalMiller.([
                 [1, 1, 0], [1, -2, 0], [-2, 1, 0], [-1, -1, 0], [-1, 2, 0], [2, -1, 0]
             ]),
         )
         mb = ReciprocalMillerBravais(-2, 1, 1, 0)
-        @test Set(family(mb)) == Set(
+        @test Set(listfamily(mb)) == Set(
             ReciprocalMillerBravais.([
                 [1, 1, -2, 0],
                 [1, -2, 1, 0],
