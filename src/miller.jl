@@ -138,7 +138,7 @@ function listfamily(mb::AbstractMillerBravais)
     end
 end
 function listfamily(m::AbstractMiller)
-    mb = convert(typeof(m) <: Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
+    mb = convert(m isa Miller ? MillerBravais : ReciprocalMillerBravais, m)  # Real or reciprocal space
     vec = listfamily(mb)
     return map(Base.Fix1(convert, typeof(m)), vec)
 end
