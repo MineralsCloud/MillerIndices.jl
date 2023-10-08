@@ -58,8 +58,8 @@ ReciprocalMillerBravais(i, j, k, l) = ReciprocalMillerBravais([i, j, k, l])
 const REGEX = r"([({[<])\s*([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)[\s,]+([-+]?[0-9]+)?[\s,]+([-+]?[0-9]+)[\s,]*([>\]})])"
 
 # This is a helper function and should not be exported!
-function _indices_str(r::Regex, s::AbstractString)
-    m = match(r, strip(s))
+function _m_str(s::AbstractString)
+    m = match(REGEX, strip(s))
     if m === nothing
         throw(ArgumentError("not a valid expression!"))
     else
