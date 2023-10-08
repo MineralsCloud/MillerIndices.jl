@@ -14,6 +14,9 @@ Calculate the angle (in degrees) between two directions by:
 \\cos\\theta = \\frac{\\mathbf{x} \\cdot \\mathbf{y}}{\\lvert\\mathbf{x}\\rvert \\lvert\\mathbf{y}\\rvert}
              = \\frac{\\sum_{ij} x_i g_{ij} y_j}{\\sqrt{\\sum_{ij} x_i g_{ij} x_j} \\sqrt{\\sum_{ij} y_i g_{ij} y_j}}.
 ```
+
+!!! note
+    For the angle between two plane normals, the result is ``180 - \\theta``.
 """
 anglebtw(𝐱::Miller, 𝐲::Miller, g::MetricTensor) =
     acosd(dot(𝐱, g, 𝐲) / lengthof(𝐱, g) / lengthof(𝐲, g))
