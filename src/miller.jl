@@ -152,15 +152,22 @@ Base.IndexStyle(::Type{<:Indices}) = IndexLinear()
 
 Base.getindex(x::Indices, i::Int) = getindex(x.data, i)
 
-Base.convert(::Type{T}, x::T) where {T<:Indices} = x
-Base.convert(::Type{Miller}, mb::MillerBravais) =
-    Miller(2 * mb[1] + mb[2], 2 * mb[2] + mb[1], mb[4])
-Base.convert(::Type{ReciprocalMiller}, mb::ReciprocalMillerBravais) =
-    ReciprocalMiller(mb[1], mb[2], mb[4])
-Base.convert(::Type{MillerBravais}, m::Miller) =
+Miller(mb::MillerBravais) = Miller(2 * mb[1] + mb[2], 2 * mb[2] + mb[1], mb[4])
+
+ReciprocalMiller(mb::ReciprocalMillerBravais) = ReciprocalMiller(mb[1], mb[2], mb[4])
+
+MillerBravais(m::Miller) =
     MillerBravais(2 * m[1] - m[2], 2 * m[2] - m[1], -(m[1] + m[2]), 3 * m[3])
-Base.convert(::Type{ReciprocalMillerBravais}, m::ReciprocalMiller) =
+
+ReciprocalMillerBravais(m::ReciprocalMiller) =
     ReciprocalMillerBravais(m[1], m[2], -(m[1] + m[2]), m[3])
+
+Base.convert(::Type{T}, x::T) where {T<:Indices} = x
+Base.convert(::Type{Miller}, mb::MillerBravais) = Miller(mb)
+Base.convert(::Type{ReciprocalMiller}, mb::ReciprocalMillerBravais) = ReciprocalMiller(mb)
+Base.convert(::Type{MillerBravais}, m::Miller) = MillerBravais(m)
+Base.convert(::Type{ReciprocalMillerBravais}, m::ReciprocalMiller) =
+    ReciprocalMillerBravais(m)
 
 Base.show(io::IO, x::Union{Miller,MillerBravais}) = print(io, '<', join(x.data, " "), '>')
 Base.show(io::IO, x::Union{ReciprocalMiller,ReciprocalMillerBravais}) =
