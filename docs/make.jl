@@ -18,6 +18,7 @@ makedocs(;
         "Home" => "index.md",
         "Manual" => [
             "Installation Guide" => "man/installation.md",
+            "Examples" => "man/examples.md",
             "Troubleshooting" => "man/troubleshooting.md",
         ],
         "Reference" => Any[
